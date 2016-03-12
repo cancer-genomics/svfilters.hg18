@@ -1,4 +1,4 @@
-Package: svfilters
+Package: svfilters.hg18
 Title: Filters for structural variant analyses
 Version: 0.0.12
 Authors@R: person("Rob", "Scharpf", email = "rscharpf@jhu.edu", role = c("aut", "cre"))
