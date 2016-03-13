@@ -1,6 +1,4 @@
-##library(EnsDb.Hsapiens.v75)  ## what version for hg18?
 library(TxDb.Hsapiens.UCSC.hg18.refGene)
-txdb <- TxDb.Hsapiens.UCSC.hg18.refGene
 tx <- transcripts(TxDb.Hsapiens.UCSC.hg18.refGene)
 
 library(AnnotationHub)
