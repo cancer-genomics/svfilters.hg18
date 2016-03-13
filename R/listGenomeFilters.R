@@ -20,34 +20,21 @@
 #' 
 #' @export
 #' 
-#' @param ucsc_build currently ignored as many of the filters are only
-#'   developed for UCSC build hg19.
-#' 
-listGenomeFilters <- function(ucsc_build="hg19"){
-  if(ucsc_build != "hg19") stop("Only available for build hg19")
-  data(tx_hg19, envir=environment())
-  tx <- get("tx_hg19")
-  data(binAssemblyGaps_hg19, envir=environment())
-  binAssemblyGaps <- get("binAssemblyGaps_hg19")
-  data(gaps_hg19, envir=environment())
-  gaps <- get("gaps_hg19")
+listGenomeFilters <- function(){
+  ##if(ucsc_build != "hg19") stop("Only available for build hg19")
+  data(transcripts, envir=environment())
+  data(assembly_gaps, envir=environment())
+  data(gaps, envir=environment())
   centromeres <- gaps[gaps$type=="centromere"]
-##  if(FALSE){
-  data(coverage_filters_hg19, envir=environment())
-  cnv <- reduce(c(coverage_filters_hg19[["amplicon"]],
-                  coverage_filters_hg19[["deletion"]]))
-  out <- reduce(coverage_filters_hg19[["outlier"]])
-##}
-##  data(lymphoblast_filters_hg19, envir=environment())
-##  lymphoblast_filters <- get("lymphoblast_filters_hg19")
-##  cnv <- reduce(c(lymphoblast_filters[["amplicon"]],
-##                  lymphoblast_filters[["deletion"]]))
-##  out <- reduce(lymphoblast_filters[["outlier"]])
+  data(coverage_filters, envir=environment())
+  cnv <- reduce(c(coverage_filters[["amplicon"]],
+                  coverage_filters[["deletion"]]))
+  out <- reduce(coverage_filters[["outlier"]])
   list(centromeres=centromeres,
-       assembly_gaps=binAssemblyGaps,
+       assembly_gaps=assembly_gaps,
        germline_cnv=cnv,
        outliers=out,
-       transcripts=tx)
+       transcripts=transcripts)
 }
 
 #' Create a reduced set of germline and sequence filters
@@ -64,13 +51,12 @@ listGenomeFilters <- function(ucsc_build="hg19"){
 #'
 #' @return a reduced \code{GRanges} object of germline and sequence filters
 #' @export
-#' @param ucsc_build character string providing the UCSC genome build
 #' @param seqlev character vector of sequence names
 #' @seealso See \code{\link[GenomicRanges]{inter-range-methods}} for a
 #'   description of \code{reduce}.
 #' 
-reduceGenomeFilters <- function(ucsc_build="hg19", seqlev){
-  filters <- listGenomeFilters(ucsc_build)
+reduceGenomeFilters <- function(seqlev){
+  filters <- listGenomeFilters()
   filters <- filters[-match("transcripts", names(filters))]
   r <- reduce(unlist(GRangesList(lapply(filters, granges))))
   if(missing(seqlev)) return(r)
@@ -82,17 +68,15 @@ reduceGenomeFilters <- function(ucsc_build="hg19", seqlev){
 #'
 #' @return a \code{GRangesList}
 #' @examples
-#' listRearFilters("hg19")
+#' listRearFilters()
 #' @seealso \code{\link{reduceRearFilters}}
 #' @export
-#' @param ucsc_build character string providing the UCSC genome build
-listRearFilters <- function(ucsc_build="hg19"){
-  if(ucsc_build != "hg19") stop("Only available for build hg19")
-  data(lymphoblast_rear_hg19, envir=environment())
+listRearFilters <- function(){
+  data(lymphoblast_rear, envir=environment())
   ##data(normalblood_rear_hg19, envir=environment())
   ##GRangesList(lymphoblast=lymphoblast_rear_hg19,
   ##normalblood=normalblood_rear_hg19)
-  lymphoblast_rear_hg19
+  lymphoblast_rear
 }
 
 #' Provides a reduced set of germline rearrangement filters derived
@@ -105,16 +89,15 @@ listRearFilters <- function(ucsc_build="hg19"){
 #'   \code{seqlev} (if provided).
 #'
 #' @examples
-#' reduceRearFilters("hg19")
+#' reduceRearFilters()
 #'
 #' @return a \code{GRanges} object
 #' @seealso \code{\link{listRearFilters}}
-#' @param ucsc_build character string providing the UCSC genome build
 #' @param seqlev character vector of sequence names
 #' 
 #' @export
-reduceRearFilters <- function(ucsc_build="hg19", seqlev){
-  filters <- listRearFilters(ucsc_build)
+reduceRearFilters <- function(seqlev){
+  filters <- listRearFilters()
   r <- reduce(unlist(filters))
   if(missing(seqlev)) return(r)
   keepSeqlevels(r, seqlev)

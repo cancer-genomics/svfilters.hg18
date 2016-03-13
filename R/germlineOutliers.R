@@ -21,6 +21,7 @@ outlierFrequencyPerBin <- function(pviews, NMAD=5){
 #' subdirectory with a views object.
 #'
 #' @examples
+#' \dontrun{
 #' library(svovarian)
 #' data(lymph_ids)
 #' dp <- projectOvarian()
@@ -28,6 +29,7 @@ outlierFrequencyPerBin <- function(pviews, NMAD=5){
 #' paths(pv) <- file.path(dp["3background"], rdsId(pv))
 #' pv <- pv[, lymph_ids]
 #' out <- germlineOutliers(pv)
+#' }
 #' 
 #' @export
 #' 

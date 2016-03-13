@@ -1,15 +1,13 @@
 #' 1kb bins with metadata for GC and mappability
 #'
-#' \code{GRanges} objects for 1kb bins of UCSC genome builds hg19 and
-#' hg18 with percent GC and average mappability stored in the
+#'  1kb bins with percent GC and average mappability stored in the
 #' \code{GRanges} metadata.
 #'
 #' @docType data
 #' @keywords datasets
 #' @name bins
-#' @usage data(bins1kb_hg19)
-#' @usage data(bins1kb_hg18)
-#' @aliases bins1kb_hg18 bins1kb_hg19
+#' @usage data(bins1kb)
+#' @aliases bins1kb
 #'
 #' @format a \code{GRanges} object containing 1kb intervals with
 #'   metadata columns 'gc' and 'map'.  See details
@@ -33,15 +31,14 @@ NULL
 #' Genome assembly gaps 
 #'
 #' A \code{GRanges} object representing assembly gaps.  Assembly gaps
-#' were defined as 1kb bins with very low GC content (less than 10
+#' were defined as 1kb bins with low GC (less than 10
 #' percent), including 'N' sequences.  The function \code{reduce} was
-#' applied to the 1kb bins with low GC, merging adjacent 1kb bins with
-#' low GC.
+#' applied to the 1kb bins with low GC.
 #'
 #' @docType data
-#' @name binAssemblyGaps
-#' @usage data(binAssemblyGaps_hg19)
-#' @aliases binAssemblyGaps_hg19
+#' @name assembly_gaps
+#' @usage data(assembly_gaps)
+#' @aliases assembly_gaps
 #'
 #' @format a \code{GRanges} object with metadata element 'gc'
 #'   providing the corresponding GC content for the interval.
@@ -54,9 +51,9 @@ NULL
 #' than 0.75.
 #'
 #' @docType data
-#' @name lowMappabilityBins
-#' @usage data(lowMappabilityBins_hg19)
-#' @aliases lowMappabilityBins_hg19
+#' @name low_mappability
+#' @usage data(low_mappability)
+#' @aliases low_mappability
 #'
 #' @format a \code{GRanges} object
 NULL
@@ -85,45 +82,44 @@ NULL
 #'   amplicons, respectively.  The genomic intervals for outliers,
 #'   deletions, and amplicons were combined in a single object.
 #'
-#' @seealso \code{\link{bins1kb_hg19}}
+#' @seealso \code{\link{bins1kb}}
 #'
 #' @docType data
-#' @name lymphoblast_filters_hg19
-#' @usage data(lymphoblast_filters_hg19)
-#' @aliases lymphoblast_filters_hg19
+#' @name lymphoblast_filters
+#' @usage data(lymphoblast_filters)
+#' @aliases lymphoblast_filters
 #' @format a \code{GRanges} object
 NULL
 
 
-#' Transcripts with approved HGNC symbols for build hg19
+#' Transcripts with approved HGNC symbols 
 #'
 #' Build hg19 corresonds to Ensembl build 75 and NCBI build 37.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name tx_hg19
-#' @usage data(tx_hg19)
-#' @aliases tx_hg19
+#' @name transcripts
+#' @usage data(transcripts)
+#' @aliases transcripts
 #' @format a \code{GRanges} object
 #'
 #' @examples
-#' data(tx_hg19)
+#' data(transcripts)
 NULL
 
-#' Genome gaps
+#' Genome gaps downloaded from UCSC
 #'
-#' Gaps in UCSC build hg19 genome, including heterochromatin,
-#' centromeres, and telomeres.
+#' Includes heterochromatin, centromeres, and telomeres.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name gaps_hg19
-#' @usage data(gaps_hg19)
-#' @aliases gaps_hg19
+#' @name gaps
+#' @usage data(gaps)
+#' @aliases gaps
 #' @format a \code{GRanges} object
 #'
 #' @examples
-#' data(gaps_hg19)
+#' data(gaps)
 NULL
 
 #' Lymphoblast rearrangement intervals
@@ -136,12 +132,46 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name lymphoblast_rear_hg19
-#' @usage data(lymphoblast_rear_hg19)
-#' @aliases lymphoblast_rear_hg19
+#' @name lymphoblast_rear
+#' @usage data(lymphoblast_rear)
+#' @aliases lymphoblast_rear
 #' @format a \code{GRanges} object
 #'
 #' @examples
-#' data(lymphoblast_rear_hg19)
-#' sum(width(lymphoblast_rear_hg19))/1e6
+#' data(lymphoblast_rear)
+#' sum(width(lymphoblast_rear))/1e6
+NULL
+
+#' Coverage filters
+#'
+#' A \code{GRangesList} of germline deletions, amplified regions, and copy
+#' number outliers identified in 10 lymphoblast cell lines and 8 blood samples
+#' from ovarian cancer patients (matched-normal).
+#'
+#' @docType data
+#' @keywords datasets
+#' @name coverage_filters
+#' @usage data(coverage_filters)
+#' @aliases coverage_filters
+#' @format a \code{GRangesList} object
+#'
+#' @examples
+#' data(coverage_filters)
+#' sum(width(coverage_filters))/1e6
+NULL
+
+#' Germline rearrangements
+#'
+#' A reduced \code{GRanges} object of rearrangements identified in 10
+#' lymphoblast cell lines and 8 blood samples from ovarian cancer patients.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name germline_rear
+#' @usage data(germline_rear)
+#' @aliases germline_rear
+#' @format a reduced \code{GRanges} object
+#'
+#' @examples
+#' data(germline_rear)
 NULL
