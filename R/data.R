@@ -45,19 +45,18 @@ NULL
 #'
 NULL
 
-#' Low mappability regions
-#'
-#' A \code{GRanges} object containing intervals of mappability less
-#' than 0.75.
-#'
-#' @docType data
-#' @name low_mappability
-#' @usage data(low_mappability)
-#' @aliases low_mappability
-#'
-#' @format a \code{GRanges} object
-NULL
-
+## Low mappability regions
+##
+## A \code{GRanges} object containing intervals of mappability less
+## than 0.75.
+##
+## @docType data
+## @name low_mappability
+## @usage data(low_mappability)
+## @aliases low_mappability
+##
+## @format a \code{GRanges} object
+## NULL
 
 #' Lymphoblast coverage-based filters
 #'
