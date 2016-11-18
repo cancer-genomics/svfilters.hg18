@@ -13,4 +13,4 @@ lb <- unlist(lb)
 lt <- unlist(lt)
 rear_intervals <- reduce(c(granges(lb), lt))
 lymphoblast_rear_hg19 <- rear_intervals
-save(lymphoblast_rear_hg19, file="~/Software/svpackages/svfilters/data/lymphoblast_rear_hg19.rda")
+save(lymphoblast_rear_hg19, file="~/Dropbox/Software/svpackages/svfilters.hg19/data/lymphoblast_rear_hg19.rda")
