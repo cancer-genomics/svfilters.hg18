@@ -1,0 +1,2 @@
+* DONE germline_rear data does not have the correct seqinfo
+lifted over to hg18 <2016-11-18 Fri>
