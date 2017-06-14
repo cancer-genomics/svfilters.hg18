@@ -174,16 +174,3 @@ NULL
 #' @examples
 #' data(germline_rear)
 NULL
-
-#' Load Txdb object
-#'
-#' @return a \code{TxDb} object
-#' @examples
-#' library(svfilters.hg19)
-#' tx <- loadTx()
-#' tx
-#' @export
-loadTx <- function(){
-  data(transcripts, envir=environment())
-  transcripts
-}
