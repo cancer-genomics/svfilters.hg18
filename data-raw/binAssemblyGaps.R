@@ -77,6 +77,6 @@ genomeGaps <- function() {
   gaps_hg18 <- gaps_hg18[-which((gaps_hg18$type == "centromere") & (seqnames(gaps_hg18) == "chrY"))]
   gaps_hg18 <- c(gaps_hg18, combined)
   gaps <- sort(gaps_hg18)
-  save(gaps_hg18, file="/Users/dbruhm/Desktop/cancer-genomics/svfilters.hg18/data/gaps.rda")
+  save(gaps, file="/Users/dbruhm/Desktop/cancer-genomics/svfilters.hg18/data/gaps.rda")
 }
 
