@@ -59,7 +59,6 @@ genome(gr) <- "hg19"
 seqlengths(gr) <- seqlengths(svfilters.hg19::bins1kb)
 strand(gr) <- "+"
 
-
 # liftOver to hg18
 
 library(rtracklayer)
@@ -68,6 +67,9 @@ chain <- import.chain("/dcl01/scharpf1/data/dbruhm/svpipeline/data/hg19ToHg18.ov
 gr18 <- unlist(liftOver(gr, chain))
 gr18 <- sortSeqlevels(gr18)
 strand(gr18) <- "+"
+
+# Remove any overlapping positions
+gr18 <- gr18[which(countOverlaps(gr18, gr18) == 1)]
 
 # Replacing seqinfo with that from bins1kb in svfilters.hg18
 genome(gr18) <- "hg18"
