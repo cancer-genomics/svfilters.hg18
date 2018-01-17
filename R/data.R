@@ -191,3 +191,20 @@ NULL
 #' @examples
 #' data(snps)
 NULL
+
+
+#' A comprehensive set of SNPs from dbSNP build 150 
+#'
+#' A \code{GRanges} object of SNP positions from dbSNP build 150.
+#' Metadata columns for the reference allele and alternate allele are included.
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name dbsnp150_snps
+#' @usage data(dbsnp150_snps)
+#' @aliases dbsnp150_snps
+#' @format a \code{GRanges} object
+#'
+#' @examples
+#' data(dbsnp150_snps)
+NULL
