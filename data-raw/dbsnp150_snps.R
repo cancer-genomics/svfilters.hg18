@@ -60,7 +60,7 @@ gr <- GRanges(seqnames = filtered$chrom,
               strand = filtered$strand,
               refUCSC = filtered$refUCSC,
               altAllele = filtered$altAllele)
-
+strand(gr) <- "+"
 
 # Making seqinfo match the seqinfo from svfilters.hg19
 data(bins1kb, package = "svfilters.hg19")

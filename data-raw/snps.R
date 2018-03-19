@@ -66,7 +66,6 @@ library(rtracklayer)
 chain <- import.chain("/dcl01/scharpf1/data/dbruhm/svpipeline/data/hg19ToHg18.over.chain")
 gr18 <- unlist(liftOver(gr, chain))
 gr18 <- sortSeqlevels(gr18)
-strand(gr18) <- "+"
 
 # Remove any overlapping positions
 gr18 <- gr18[which(countOverlaps(gr18, gr18) == 1)]
