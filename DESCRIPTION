@@ -1,10 +1,10 @@
 Package: svfilters.hg18
 Title: Filters for structural variant analyses
-Version: 0.0.18
+Version: 0.0.19
 Authors@R: person("Rob", "Scharpf", email = "rscharpf@jhu.edu", role = c("aut", "cre"))
 Description: Provides GRanges objects as filters for structural variant analyses.
-Depends: 
-    R (>= 3.2.0), GenomicRanges
+Depends:
+    R (>= 3.2.0), GenomicRanges (>= 1.31.16)
 Imports:
     BiocGenerics,
     GenomeInfoDb
