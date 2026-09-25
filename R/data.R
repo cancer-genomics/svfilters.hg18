@@ -58,39 +58,6 @@ NULL
 ## @format a \code{GRanges} object
 ## NULL
 
-#' Lymphoblast coverage-based filters
-#'
-#' Genomic intervals for outliers, deletions, and amplifications
-#' identified in lymphoblast cell lines.
-#'
-#' @details
-#'
-#' Coverage estimates for 10 lymphoblast cell lines were developed
-#'   using the package \code{svpreprocess} in non-overlapping 1kb bins
-#'   along the genome.  The autosomal median absolute deviation (MAD)
-#'   was used as a robust measure of variance for log2-transformed
-#'   counts. Log2-transformed counts were adjusted for GC content, as
-#'   well as a loess smoother of background coverage estimates.  Bins
-#'   for which two or more of the 10 lymphoblast cell lines had a
-#'   preprocessed coverage estimate 5 or more MADs from zero were
-#'   categorized as outliers.  Segmentation of the preprocessed
-#'   coverage estimates was performed using circular binary
-#'   segmentation with default settings (see \code{svcnvs} package).
-#'   For purposes of an ad-hoc germline filter, segments with means
-#'   less than -1 or greater than 1 were considered deletions or
-#'   amplicons, respectively.  The genomic intervals for outliers,
-#'   deletions, and amplicons were combined in a single object.
-#'
-#' @seealso \code{\link{bins1kb}}
-#'
-#' @docType data
-#' @name lymphoblast_filters
-#' @usage data(lymphoblast_filters)
-#' @aliases lymphoblast_filters
-#' @format a \code{GRanges} object
-NULL
-
-
 #' Transcripts with approved HGNC symbols and cancer-gene annotation
 #'
 #' RefSeq transcripts from \code{TxDb.Hsapiens.UCSC.hg18.refGene}, restricted to
@@ -179,26 +146,6 @@ NULL
 #'
 #' @examples
 #' data(gaps)
-NULL
-
-#' Lymphoblast rearrangement intervals
-#'
-#' Genomic intervals demarcating clusters of reads involved in
-#' improper pairs were identified in a set of 10 lymphoblast cell
-#' lines.  The genomic intervals that could could be linked by 5 or
-#' more read pairs were reduced.  These reduced intervals are used to
-#' remove potential germline rearrangements.
-#'
-#' @docType data
-#' @keywords datasets
-#' @name lymphoblast_rear
-#' @usage data(lymphoblast_rear)
-#' @aliases lymphoblast_rear
-#' @format a \code{GRanges} object
-#'
-#' @examples
-#' data(lymphoblast_rear)
-#' sum(width(lymphoblast_rear))/1e6
 NULL
 
 #' Coverage filters
