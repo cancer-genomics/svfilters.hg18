@@ -1,0 +1,39 @@
+bibentry(
+  bibtype = "Manual",
+  header = "To cite svfilters.hg18 in publications use:",
+  title = "svfilters.hg18: Filters for structural variant analyses",
+  author = c(person("Robert", "Scharpf")),
+  year = "2026",
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/cancer-genomics/svfilters.hg18"
+)
+
+bibentry(
+  bibtype = "Article",
+  header = paste("The clinically_significant and cancer_gene columns of",
+                 "transcripts are derived in part from OncoKB",
+                 "(https://www.oncokb.org; terms: https://www.oncokb.org/terms).",
+                 "Please also cite:"),
+  title = "OncoKB: A Precision Oncology Knowledge Base",
+  author = c(person("Debyani", "Chakravarty"), person("Jianjiong", "Gao"),
+             person("Sarah M.", "Phillips"), person("others")),
+  journal = "JCO Precision Oncology",
+  year = "2017",
+  volume = "2017",
+  pages = "PO.17.00011",
+  doi = "10.1200/PO.17.00011"
+)
+
+bibentry(
+  bibtype = "Article",
+  title = paste("Quantifying the Expanding Landscape of Clinical Actionability",
+                "for Patients with Cancer"),
+  author = c(person("Sarah P.", "Suehnholz"), person("Moriah H.", "Nissan"),
+             person("Hongxin", "Zhang"), person("others")),
+  journal = "Cancer Discovery",
+  year = "2024",
+  volume = "14",
+  number = "1",
+  pages = "49--65",
+  doi = "10.1158/2159-8290.CD-23-0467"
+)

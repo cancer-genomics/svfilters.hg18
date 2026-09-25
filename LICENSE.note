@@ -1,0 +1,49 @@
+svfilters.hg18 — licensing of code and of bundled data
+======================================================
+
+The License field of DESCRIPTION (Artistic-2.0) applies to the CODE in this
+package. Some bundled DATA are derived from third-party sources that carry
+their own terms, which Artistic-2.0 neither grants nor overrides.
+
+
+1. OncoKB content — the `clinically_significant` column of `transcripts`, and
+   the OncoKB contribution to its `cancer_gene` column.
+
+   OncoKB (https://www.oncokb.org), a precision oncology knowledge base
+   maintained by Memorial Sloan Kettering Cancer Center (MSK), is the source of
+   this content. It is redistributed here with the express permission of MSK
+   (granted 2026-09-02) and is used under the OncoKB Terms of Use,
+   https://www.oncokb.org/terms.
+
+     - Only gene symbols and OncoKB evidence-level labels are included: no
+       variant or alteration content, drugs, tumor types, or descriptive text.
+       The raw OncoKB downloads are not part of this package.
+     - The content is a frozen snapshot: cancer gene list of 2026-01-06,
+       biomarker levels (Tx/Dx/Px/R) of 2026-01-12. OncoKB is updated
+       continuously. Anyone needing current OncoKB content, or OncoKB data for
+       any other purpose, should obtain it directly from https://www.oncokb.org
+       under their own registration and terms.
+     - The permission covers redistribution of these columns in this package;
+       it does not grant further rights to OncoKB content.
+
+   MSK makes no warranties or representations with respect to the OncoKB
+   content, and it is not a substitute for professional medical judgment or
+   advice.
+
+   Cite: Chakravarty D, et al. OncoKB: A Precision Oncology Knowledge Base.
+   JCO Precis Oncol. 2017;2017:PO.17.00011. PMID 28890946. And: Suehnholz SP,
+   et al. Quantifying the Expanding Landscape of Clinical Actionability for
+   Patients with Cancer. Cancer Discov. 2024;14(1):49-65. PMID 37849038.
+
+
+2. Literature driver-gene sets — the remainder of the `cancer_gene` column.
+
+   Gene symbols extracted from the supplementary tables of six published
+   driver-gene analyses (PMIDs 23539594, 24132290, 24390350, 29056346,
+   29625053, 32015527). Copyright in those tables rests with the respective
+   publishers; only gene symbols are included here.
+
+
+3. 2016 literature-based gene list — the `cancer_connection` and `biol_sign`
+   columns of `transcripts`, from inst/extdata/cancer_genes_2016-03-05.csv.
+   Contains no OncoKB content.

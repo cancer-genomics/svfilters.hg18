@@ -32,4 +32,7 @@ cancer.genes <- df$biol_sign[df$is_clin_sign]
 tx$cancer_connection <- tx$gene_name %in% cancer.genes
 tx$biol_sign <- tx$gene_name %in% df$biol_sign
 transcripts <- tx
-save(transcripts, file="~/Software/svpackages/svfilters.hg18/data/transcripts.rda")
+save(transcripts, file="data/transcripts.rda", compress="xz")
+
+## Add the OncoKB-derived cancer_gene and clinically_significant columns.
+source("data-raw/cancer_gene_columns.R")

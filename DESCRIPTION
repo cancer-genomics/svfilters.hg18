@@ -1,8 +1,14 @@
 Package: svfilters.hg18
 Title: Filters for structural variant analyses
-Version: 0.0.19
-Authors@R: person("Rob", "Scharpf", email = "rscharpf@jhu.edu", role = c("aut", "cre"))
-Description: Provides GRanges objects as filters for structural variant analyses.
+Version: 0.0.20
+Authors@R: c(
+    person("Rob", "Scharpf", email = "rscharpf@jhu.edu", role = c("aut", "cre")),
+    person("Nick", "Vulpescu", role = "ctb"))
+Description: Provides GRanges objects as filters for structural variant analyses,
+    and a transcripts object annotated with cancer genes. Annotation derived from
+    OncoKB (<https://www.oncokb.org>) is redistributed with the permission of
+    Memorial Sloan Kettering Cancer Center under the OncoKB Terms of Use
+    (<https://www.oncokb.org/terms>); see LICENSE.note.
 Depends:
     R (>= 3.2.0), GenomicRanges (>= 1.31.16)
 Imports:
