@@ -58,52 +58,79 @@ NULL
 ## @format a \code{GRanges} object
 ## NULL
 
-#' Lymphoblast coverage-based filters
+#' Transcripts with approved HGNC symbols and cancer-gene annotation
 #'
-#' Genomic intervals for outliers, deletions, and amplifications
-#' identified in lymphoblast cell lines.
+#' RefSeq transcripts from \code{TxDb.Hsapiens.UCSC.hg18.refGene}, restricted to
+#' chr1-22, X, Y, and M, with \code{gene_name} set to the approved HGNC symbol
+#' mapped from the RefSeq accession. NCBI build 36.
 #'
-#' @details
+#' Two sets of cancer-gene annotation are carried, each assigned by gene
+#' symbol:
 #'
-#' Coverage estimates for 10 lymphoblast cell lines were developed
-#'   using the package \code{svpreprocess} in non-overlapping 1kb bins
-#'   along the genome.  The autosomal median absolute deviation (MAD)
-#'   was used as a robust measure of variance for log2-transformed
-#'   counts. Log2-transformed counts were adjusted for GC content, as
-#'   well as a loess smoother of background coverage estimates.  Bins
-#'   for which two or more of the 10 lymphoblast cell lines had a
-#'   preprocessed coverage estimate 5 or more MADs from zero were
-#'   categorized as outliers.  Segmentation of the preprocessed
-#'   coverage estimates was performed using circular binary
-#'   segmentation with default settings (see \code{svcnvs} package).
-#'   For purposes of an ad-hoc germline filter, segments with means
-#'   less than -1 or greater than 1 were considered deletions or
-#'   amplicons, respectively.  The genomic intervals for outliers,
-#'   deletions, and amplicons were combined in a single object.
+#' \describe{
+#'   \item{\code{cancer_connection}, \code{biol_sign}}{From a literature-based
+#'     gene list compiled 2016-03-05
+#'     (\code{inst/extdata/cancer_genes_2016-03-05.csv}), with no OncoKB
+#'     content. \code{biol_sign} marks genes of biological interest (1,407
+#'     symbols) and \code{cancer_connection} the clinically significant subset
+#'     (195 symbols).}
+#'   \item{\code{clinically_significant}}{For 170 symbols, the highest OncoKB
+#'     evidence level within each class (Tx, Dx, Px, R), comma-separated, for
+#'     example \code{"Dx1,Px1,R1,Tx1"}; \code{NA} otherwise. Derived entirely
+#'     from OncoKB.}
+#'   \item{\code{cancer_gene}}{\code{TRUE} for 1,078 symbols: the union of the
+#'     OncoKB ONCOGENE/TSG gene list and its aliases, the OncoKB biomarker genes,
+#'     and six published driver-gene sets (PMIDs 23539594, 24132290, 24390350,
+#'     29056346, 29625053, 32015527).}
+#' }
 #'
-#' @seealso \code{\link{bins1kb}}
+#' Neither OncoKB-derived column carries variant or alteration content, drugs,
+#' tumor types, or descriptive text. Five symbols (\code{H3F3A}, \code{WHSC1},
+#' \code{HIST1H3B}, \code{HIST1H3C}, \code{MRE11A}) carry the older names of
+#' OncoKB genes and are matched to them through OncoKB aliases.
 #'
-#' @docType data
-#' @name lymphoblast_filters
-#' @usage data(lymphoblast_filters)
-#' @aliases lymphoblast_filters
-#' @format a \code{GRanges} object
-NULL
-
-
-#' Transcripts with approved HGNC symbols 
+#' @section OncoKB snapshot:
+#' The OncoKB content is a \strong{frozen snapshot}: the cancer gene list of
+#' 2026-01-06 and the biomarker levels (Tx/Dx/Px/R) of 2026-01-12. OncoKB is
+#' updated continuously, so these annotations may be out of date. Anyone
+#' needing current OncoKB content should obtain it directly from
+#' \url{https://www.oncokb.org} under their own registration and terms. The
+#' snapshot dates, sources, and citations are also stored with the object, in
+#' \code{metadata(transcripts)$oncokb}.
 #'
-#' Build hg19 corresonds to Ensembl build 75 and NCBI build 37.
+#' @section Attribution:
+#' OncoKB (\url{https://www.oncokb.org}), a precision oncology knowledge base
+#' maintained by Memorial Sloan Kettering Cancer Center (MSK), is the source of
+#' the OncoKB content in \code{clinically_significant} and \code{cancer_gene}.
+#' It is redistributed here with the permission of MSK and used under the
+#' OncoKB Terms of Use (\url{https://www.oncokb.org/terms}). MSK makes no
+#' warranties or representations with respect to the OncoKB content, and it is
+#' not a substitute for professional medical judgment or advice. See
+#' \code{LICENSE.note} and \code{citation("svfilters.hg18")}.
+#'
+#' @references
+#' Chakravarty D, Gao J, Phillips SM, et al. OncoKB: A Precision Oncology
+#' Knowledge Base. \emph{JCO Precis Oncol.} 2017;2017:PO.17.00011.
+#' doi:10.1200/PO.17.00011. PMID: 28890946.
+#'
+#' Suehnholz SP, Nissan MH, Zhang H, et al. Quantifying the Expanding Landscape
+#' of Clinical Actionability for Patients with Cancer. \emph{Cancer Discov.}
+#' 2024;14(1):49-65. doi:10.1158/2159-8290.CD-23-0467. PMID: 37849038.
 #'
 #' @docType data
 #' @keywords datasets
 #' @name transcripts
 #' @usage data(transcripts)
 #' @aliases transcripts
-#' @format a \code{GRanges} object
+#' @format a \code{GRanges} object with metadata columns \code{tx_id},
+#'   \code{tx_name}, \code{gene_name}, \code{cancer_connection},
+#'   \code{biol_sign}, \code{clinically_significant}, and \code{cancer_gene},
+#'   and the OncoKB provenance record in \code{metadata(transcripts)$oncokb}
 #'
 #' @examples
 #' data(transcripts)
+#' metadata(transcripts)$oncokb$snapshots
+#' unique(transcripts$gene_name[!is.na(transcripts$clinically_significant)])
 NULL
 
 #' Genome gaps downloaded from UCSC
@@ -119,26 +146,6 @@ NULL
 #'
 #' @examples
 #' data(gaps)
-NULL
-
-#' Lymphoblast rearrangement intervals
-#'
-#' Genomic intervals demarcating clusters of reads involved in
-#' improper pairs were identified in a set of 10 lymphoblast cell
-#' lines.  The genomic intervals that could could be linked by 5 or
-#' more read pairs were reduced.  These reduced intervals are used to
-#' remove potential germline rearrangements.
-#'
-#' @docType data
-#' @keywords datasets
-#' @name lymphoblast_rear
-#' @usage data(lymphoblast_rear)
-#' @aliases lymphoblast_rear
-#' @format a \code{GRanges} object
-#'
-#' @examples
-#' data(lymphoblast_rear)
-#' sum(width(lymphoblast_rear))/1e6
 NULL
 
 #' Coverage filters
